@@ -1,7 +1,12 @@
 Libchart ChangeLog
 ==================
-(C) 2005-2011 Jean-Marc Trémeaux
+(C) 2005-2013 Jean-Marc Trémeaux
 
+VERSION 1.4: (2013-10-20)
+==========
+  FEATURES:
+    * Library is now available as PHP Composer package
+    * Class names and namespaces are PSR-0 compatible
 
 VERSION 1.3: (2011-07-27)
 ==========
@@ -9,7 +14,7 @@ VERSION 1.3: (2011-07-27)
     * Customized palette on Horizontal and Vertical Bar charts.
     * Add an option to turn off text caption on individual data points.
     * Add an option to disable sorting (preserve data points order).
-    
+
   BUGFIXES:
     * Issue #2: DejaVu Fonts don't include license
 
@@ -40,7 +45,7 @@ VERSION 1.2: (2007-08-13)
     * Multiple line charts
     * Multiple vertical and horizontal bar charts
     * Customizable layout (plot)
-    
+
   REFACTORING:
     * Support for PHP4 is deprecated, as PHP 4 has reached its end of life.
     * Use of PHP5 OO constructs

@@ -22,18 +22,18 @@
 	 *
 	 */
 
-	include "../libchart/classes/libchart.php";
+	include "../vendor/autoload.php";
 
-	$chart = new VerticalBarChart();
+	$chart = new \Libchart\View\Chart\VerticalBarChart();
 
-	$dataSet = new XYDataSet();
-	$dataSet->addPoint(new Point("Jan 2005", 273));
-	$dataSet->addPoint(new Point("Feb 2005", 421));
-	$dataSet->addPoint(new Point("March 2005", 642));
-	$dataSet->addPoint(new Point("April 2005", 800));
-	$dataSet->addPoint(new Point("May 2005", 1200));
-	$dataSet->addPoint(new Point("June 2005", 1500));
-	$dataSet->addPoint(new Point("July 2005", 2600));
+	$dataSet = new \Libchart\Model\XYDataSet();
+	$dataSet->addPoint(new \Libchart\Model\Point("Jan 2005", 273));
+	$dataSet->addPoint(new \Libchart\Model\Point("Feb 2005", 421));
+	$dataSet->addPoint(new \Libchart\Model\Point("March 2005", 642));
+	$dataSet->addPoint(new \Libchart\Model\Point("April 2005", 800));
+	$dataSet->addPoint(new \Libchart\Model\Point("May 2005", 1200));
+	$dataSet->addPoint(new \Libchart\Model\Point("June 2005", 1500));
+	$dataSet->addPoint(new \Libchart\Model\Point("July 2005", 2600));
 	$chart->setDataSet($dataSet);
 
 	$chart->setTitle("Monthly usage for www.example.com");

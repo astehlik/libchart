@@ -22,16 +22,16 @@
 	 *
 	 */
 
-	include "../libchart/classes/libchart.php";
+	include "../vendor/autoload.php";
 
-	$chart = new HorizontalBarChart(600, 170);
+	$chart = new \Libchart\View\Chart\HorizontalBarChart(600, 170);
 
-	$dataSet = new XYDataSet();
-	$dataSet->addPoint(new Point("/wiki/Instant_messenger", 50));
-	$dataSet->addPoint(new Point("/wiki/Web_Browser", 75));
-	$dataSet->addPoint(new Point("/wiki/World_Wide_Web", 122));
+	$dataSet = new \Libchart\Model\XYDataSet();
+	$dataSet->addPoint(new \Libchart\Model\Point("/wiki/Instant_messenger", 50));
+	$dataSet->addPoint(new \Libchart\Model\Point("/wiki/Web_Browser", 75));
+	$dataSet->addPoint(new \Libchart\Model\Point("/wiki/World_Wide_Web", 122));
 	$chart->setDataSet($dataSet);
-	$chart->getPlot()->setGraphPadding(new Padding(5, 30, 20, 140));
+	$chart->getPlot()->setGraphPadding(new \Libchart\View\Primitive\Padding(5, 30, 20, 140));
 
 	$chart->setTitle("Most visited pages for www.example.com");
 	$chart->render("generated/demo2.png");

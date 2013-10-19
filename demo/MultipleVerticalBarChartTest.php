@@ -22,25 +22,25 @@
 	 *
 	 */
 
-	include "../libchart/classes/libchart.php";
+	include "../vendor/autoload.php";
 
-	$chart = new VerticalBarChart();
+	$chart = new \Libchart\View\Chart\VerticalBarChart();
 
-	$serie1 = new XYDataSet();
-	$serie1->addPoint(new Point("YT", 64));
-	$serie1->addPoint(new Point("NT", 63));
-	$serie1->addPoint(new Point("BC", 58));
-	$serie1->addPoint(new Point("AB", 58));
-	$serie1->addPoint(new Point("SK", 46));
+	$serie1 = new \Libchart\Model\XYDataSet();
+	$serie1->addPoint(new \Libchart\Model\Point("YT", 64));
+	$serie1->addPoint(new \Libchart\Model\Point("NT", 63));
+	$serie1->addPoint(new \Libchart\Model\Point("BC", 58));
+	$serie1->addPoint(new \Libchart\Model\Point("AB", 58));
+	$serie1->addPoint(new \Libchart\Model\Point("SK", 46));
 	
-	$serie2 = new XYDataSet();
-	$serie2->addPoint(new Point("YT", 61));
-	$serie2->addPoint(new Point("NT", 60));
-	$serie2->addPoint(new Point("BC", 56));
-	$serie2->addPoint(new Point("AB", 57));
-	$serie2->addPoint(new Point("SK", 52));
+	$serie2 = new \Libchart\Model\XYDataSet();
+	$serie2->addPoint(new \Libchart\Model\Point("YT", 61));
+	$serie2->addPoint(new \Libchart\Model\Point("NT", 60));
+	$serie2->addPoint(new \Libchart\Model\Point("BC", 56));
+	$serie2->addPoint(new \Libchart\Model\Point("AB", 57));
+	$serie2->addPoint(new \Libchart\Model\Point("SK", 52));
 	
-	$dataSet = new XYSeriesDataSet();
+	$dataSet = new \Libchart\Model\XYSeriesDataSet();
 	$dataSet->addSerie("1990", $serie1);
 	$dataSet->addSerie("1995", $serie2);
 	$chart->setDataSet($dataSet);

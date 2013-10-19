@@ -14,10 +14,10 @@
         'Windows 7' => '4',
         'SunOS' => '3');
         
-    $chart = new PieChart();
-    $dataSet = new XYDataSet();
+    $chart = new \Libchart\View\Chart\PieChart();
+    $dataSet = new \Libchart\Model\XYDataSet();
     foreach($data as $key => $value) {
-        $dataSet->addPoint(new Point($key, $value));
+        $dataSet->addPoint(new \Libchart\Model\Point($key, $value));
     }
     $chart->setDataSet($dataSet);
     $chart->render();

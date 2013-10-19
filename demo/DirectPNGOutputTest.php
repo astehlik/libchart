@@ -22,16 +22,16 @@
 	 *
 	 */
 
-	include "../libchart/classes/libchart.php";
+	include "../vendor/autoload.php";
 
 	header("Content-type: image/png");
 
-	$chart = new PieChart(500, 300);
+	$chart = new \Libchart\View\Chart\PieChart(500, 300);
 
-	$dataSet = new XYDataSet();
-	$dataSet->addPoint(new Point("Bleu d'Auvergne", 50));
-	$dataSet->addPoint(new Point("Tomme de Savoie", 75));
-	$dataSet->addPoint(new Point("Crottin de Chavignol", 30));
+	$dataSet = new \Libchart\Model\XYDataSet();
+	$dataSet->addPoint(new \Libchart\Model\Point("Bleu d'Auvergne", 50));
+	$dataSet->addPoint(new \Libchart\Model\Point("Tomme de Savoie", 75));
+	$dataSet->addPoint(new \Libchart\Model\Point("Crottin de Chavignol", 30));
 	$chart->setDataSet($dataSet);
 
 	$chart->setTitle("Preferred Cheese");

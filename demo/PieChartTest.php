@@ -22,17 +22,17 @@
 	 *
 	 */
 
-	include "../libchart/classes/libchart.php";
+	include "../vendor/autoload.php";
 
-	$chart = new PieChart();
+	$chart = new \Libchart\View\Chart\PieChart();
 
-	$dataSet = new XYDataSet();
-	$dataSet->addPoint(new Point("Mozilla Firefox (80)", 80));
-	$dataSet->addPoint(new Point("Konqueror (75)", 75));
-	$dataSet->addPoint(new Point("Opera (50)", 50));
-	$dataSet->addPoint(new Point("Safari (37)", 37));
-	$dataSet->addPoint(new Point("Dillo (37)", 37));
-	$dataSet->addPoint(new Point("Other (72)", 70));
+	$dataSet = new \Libchart\Model\XYDataSet();
+	$dataSet->addPoint(new \Libchart\Model\Point("Mozilla Firefox (80)", 80));
+	$dataSet->addPoint(new \Libchart\Model\Point("Konqueror (75)", 75));
+	$dataSet->addPoint(new \Libchart\Model\Point("Opera (50)", 50));
+	$dataSet->addPoint(new \Libchart\Model\Point("Safari (37)", 37));
+	$dataSet->addPoint(new \Libchart\Model\Point("Dillo (37)", 37));
+	$dataSet->addPoint(new \Libchart\Model\Point("Other (72)", 70));
 	$chart->setDataSet($dataSet);
 
 	$chart->setTitle("User agents for www.example.com");

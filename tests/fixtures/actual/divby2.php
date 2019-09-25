@@ -1,0 +1,11 @@
+<?php
+    $chart = new \Libchart\View\Chart\HorizontalBarChart(500, 250);
+
+    $dataSet = new \Libchart\Model\XYDataSet();
+    $dataSet->addPoint(new \Libchart\Model\Point("Mozilla Firefox (0)", 0));
+    $dataSet->addPoint(new \Libchart\Model\Point("Konqueror (0)", 0));
+    $dataSet->addPoint(new \Libchart\Model\Point("Other (0)", 0));
+    $chart->setDataSet($dataSet);
+
+    $chart->setTitle("User agents for www.example.com");
+    $chart->render();

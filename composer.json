@@ -18,5 +18,8 @@
 	],
 	"autoload": {
 		"psr-0": { "Libchart\\": "libchart/"}
+	},
+	"require": {
+		"php": "^7.0"
 	}
 }

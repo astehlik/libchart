@@ -28,7 +28,9 @@ class BasicTest extends TestCase
      */
     public function testFixtureOuputsSameFile(string $expectedPngFile, string $inputPhpFile)
     {
-        $this->assertStringNotContainsString(file_get_contents($inputPhpFile), 'common.php');
+        if (method_exists($this, 'assertStringNotContainsString')) {
+            $this->assertStringNotContainsString(file_get_contents($inputPhpFile), 'common.php');
+        }
 
         if (!file_exists($expectedPngFile)) {
             // No file means an error is going to be thrown

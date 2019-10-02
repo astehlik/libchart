@@ -69,7 +69,7 @@
         protected function checkDataModel() {
             // Check if a dataset was defined
             if (!$this->dataSet) {
-                die("Error: No dataset defined.");
+                throw new \RuntimeException("Error: No dataset defined.");
             }
             
             // Maybe no points are defined, but that's ok. This will yield and empty graph with default boundaries.

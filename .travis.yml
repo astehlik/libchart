@@ -1,0 +1,57 @@
+sudo: false
+
+language: php
+
+cache:
+  directories:
+    - $HOME/.composer
+    - $HOME/.cache/composer
+
+addons:
+  apt:
+    packages:
+      - parallel
+
+stages:
+  - test
+
+before_install:
+  - composer self-update
+  - composer --version
+
+before_script:
+  - chmod +x ./.travis/*.sh
+
+jobs:
+  include:
+    - stage: test
+      name: "Composer validate"
+      php: "7.3"
+      script: composer validate
+
+    - name: "Unit tests PHP 7.0"
+      php: "7.0"
+      script: ./.travis/test_phpunit.sh
+    - name: "Unit tests PHP 7.1"
+      php: "7.1"
+      script: ./.travis/test_phpunit.sh
+    - name: "Unit tests PHP 7.2"
+      php: "7.2"
+      script: ./.travis/test_phpunit.sh
+    - name: "Unit tests PHP 7.3"
+      php: "7.3"
+      env: UPLOAD_CODE_COVERAGE="yes"
+      script: ./.travis/test_phpunit.sh
+
+    - name: "PHP linting PHP 7.0"
+      php: "7.0"
+      script: ./.travis/test_lint.sh
+    - name: "PHP linting PHP 7.1"
+      php: "7.1"
+      script: ./.travis/test_lint.sh
+    - name: "PHP linting PHP 7.2"
+      php: "7.2"
+      script: ./.travis/test_lint.sh
+    - name: "PHP linting PHP 7.3"
+      php: "7.3"
+      script: ./.travis/test_lint.sh

@@ -14,6 +14,8 @@ plugins:
     enabled: true
 
 exclude_patterns:
+  - "**/test/"
+  - "**/tests/"
   - .hgignore
   - LICENSE
   - README.md

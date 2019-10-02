@@ -20,9 +20,16 @@ exclude_patterns:
   - LICENSE
   - README.md
   - build.xml
+  - phpunit.xml
   - composer.json
   - libchart/doc/GNU_GPL_V3
   - libchart/doc/DEJAVU_LICENSE
+  - libchart/ChangeLog
+  - libchart/COPYING
   - libchart/README
   - "**/*.ttf"
   - "**/*.png"
+  - ".codeclimate.yml"
+  - ".gitignore"
+  - ".travis.yml"
+  - "**/.travis/*.sh"

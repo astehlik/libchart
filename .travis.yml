@@ -1,28 +1,54 @@
 sudo: false
 
 language: php
-php:
-  - 7.0
-  - 7.1
-  - 7.2
-  - 7.3
-
-matrix:
-  fast_finish: true
-  allow_failures:
-    - php: nightly
 
 cache:
   directories:
     - $HOME/.composer
-    - build/cache
+    - $HOME/.cache/composer
 
-install:
-  - composer install --prefer-dist
-  - pecl install pcov || true
+addons:
+  apt:
+    packages:
+      - parallel
 
-script:
-  - vendor/bin/phpunit --coverage-clover build/logs/clover.xml
+stages:
+  - test
 
-after_success:
-  - travis_retry php vendor/bin/php-coveralls -v
+before_install:
+  - composer self-update
+  - composer --version
+
+jobs:
+  include:
+    - stage: test
+      name: "Composer validate"
+      php: "7.3"
+      script: composer validate
+
+    - name: "Unit tests PHP 7.0"
+      php: "7.0"
+      script: ./.travis/test_phpunit.sh
+    - name: "Unit tests PHP 7.1"
+      php: "7.1"
+      script: ./.travis/test_phpunit.sh
+    - name: "Unit tests PHP 7.2"
+      php: "7.2"
+      script: ./.travis/test_phpunit.sh
+    - name: "Unit tests PHP 7.3"
+      php: "7.3"
+      env: UPLOAD_CODE_COVERAGE="yes"
+      script: ./.travis/test_phpunit.sh
+
+    - name: "PHP linting PHP 7.0"
+      php: "7.0"
+      script: ./.travis/test_lint.sh
+    - name: "PHP linting PHP 7.1"
+      php: "7.1"
+      script: ./.travis/test_lint.sh
+    - name: "PHP linting PHP 7.2"
+      php: "7.2"
+      script: ./.travis/test_lint.sh
+    - name: "PHP linting PHP 7.3"
+      php: "7.3"
+      script: ./.travis/test_lint.sh

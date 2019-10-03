@@ -1,21 +1,16 @@
 <?php
+    $chart = new \Libchart\View\Chart\PieChart(500, 250);
 
-use Libchart\Model\Point;
-use Libchart\Model\XYDataSet;
-use Libchart\View\Chart\PieChart;
+    $dataSet = new \Libchart\Model\XYDataSet();
+    $dataSet->addPoint(new \Libchart\Model\Point("a (4872)", 4872));
+    $dataSet->addPoint(new \Libchart\Model\Point("b (4774)", 4774));
+    $dataSet->addPoint(new \Libchart\Model\Point("c (288)", 288));
+    $dataSet->addPoint(new \Libchart\Model\Point("d (18)", 18));
+    $dataSet->addPoint(new \Libchart\Model\Point("e (9)", 9));
+    $dataSet->addPoint(new \Libchart\Model\Point("f (0)", 0));
+    $dataSet->addPoint(new \Libchart\Model\Point("g (0)", 0));
 
-$chart = new PieChart(500, 250);
+    $chart->setDataSet($dataSet);
 
-$dataSet = new XYDataSet();
-$dataSet->addPoint(new Point("a (4872)", 4872));
-$dataSet->addPoint(new Point("b (4774)", 4774));
-$dataSet->addPoint(new Point("c (288)", 288));
-$dataSet->addPoint(new Point("d (18)", 18));
-$dataSet->addPoint(new Point("e (9)", 9));
-$dataSet->addPoint(new Point("f (0)", 0));
-$dataSet->addPoint(new Point("g (0)", 0));
-
-$chart->setDataSet($dataSet);
-
-$chart->setTitle("Sales for 2006");
-$chart->render();
+    $chart->setTitle("Sales for 2006");
+    $chart->render();

@@ -1,18 +1,13 @@
 <?php
+    $chart = new \Libchart\View\Chart\PieChart();
 
-use Libchart\Model\Point;
-use Libchart\Model\XYDataSet;
-use Libchart\View\Chart\PieChart;
+    $chart->getConfig()->setShowPointCaption(false);
 
-$chart = new PieChart();
+    $dataSet = new \Libchart\Model\XYDataSet();
+    $dataSet->addPoint(new \Libchart\Model\Point("Some part", 20));
+    $dataSet->addPoint(new \Libchart\Model\Point("Another part", 35));
+    $dataSet->addPoint(new \Libchart\Model\Point("Biggest part", 70));
+    $chart->setDataSet($dataSet);
 
-$chart->getConfig()->setShowPointCaption(false);
-
-$dataSet = new XYDataSet();
-$dataSet->addPoint(new Point("Some part", 20));
-$dataSet->addPoint(new Point("Another part", 35));
-$dataSet->addPoint(new Point("Biggest part", 70));
-$chart->setDataSet($dataSet);
-
-$chart->setTitle("This is a pie");
-$chart->render();
+    $chart->setTitle("This is a pie");
+    $chart->render();

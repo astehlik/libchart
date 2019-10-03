@@ -1,19 +1,14 @@
 <?php
+    $chart = new \Libchart\View\Chart\PieChart(500, 250);
 
-use Libchart\Model\Point;
-use Libchart\Model\XYDataSet;
-use Libchart\View\Chart\PieChart;
+    $chart->getConfig()->setSortDataPoint(false);
 
-$chart = new PieChart(500, 250);
+    $dataSet = new \Libchart\Model\XYDataSet();
+    $dataSet->addPoint(new \Libchart\Model\Point("Item 1 (20)", 20));
+    $dataSet->addPoint(new \Libchart\Model\Point("Item 2 (50)", 50));
+    $dataSet->addPoint(new \Libchart\Model\Point("Item 3 (30)", 30));
+    $dataSet->addPoint(new \Libchart\Model\Point("Item 4 (70)", 70));
+    $chart->setDataSet($dataSet);
 
-$chart->getConfig()->setSortDataPoint(false);
-
-$dataSet = new XYDataSet();
-$dataSet->addPoint(new Point("Item 1 (20)", 20));
-$dataSet->addPoint(new Point("Item 2 (50)", 50));
-$dataSet->addPoint(new Point("Item 3 (30)", 30));
-$dataSet->addPoint(new Point("Item 4 (70)", 70));
-$chart->setDataSet($dataSet);
-
-$chart->setTitle("This example preserves item order");
-$chart->render();
+    $chart->setTitle("This example preserves item order");
+    $chart->render();

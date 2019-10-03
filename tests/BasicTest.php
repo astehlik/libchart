@@ -18,27 +18,10 @@
 
 namespace Tests\Libchart;
 
-use Exception;
-use GlobIterator;
 use PHPUnit\Framework\TestCase;
-use RuntimeException;
-use SplFileInfo;
 
 class BasicTest extends TestCase
 {
-    public function provider()
-    {
-        foreach (new GlobIterator('tests/fixtures/actual/*.php') as $fileInfo) {
-            /** @var $fileInfo SplFileInfo */
-
-            // Use .php as a label
-            yield $fileInfo->getFilename() => [
-                str_replace(['actual', '.php'], ['expected', '.png'], $fileInfo->getRealPath()),
-                $fileInfo->getRealPath(),
-            ];
-        }
-    }
-
     /**
      * @dataProvider provider
      * @runInSeparateProcess
@@ -51,22 +34,19 @@ class BasicTest extends TestCase
 
         if (!file_exists($expectedPngFile)) {
             // No file means an error is going to be thrown
-            $this->expectException(RuntimeException::class);
+            $this->expectException(\RuntimeException::class);
         }
 
-        $actualPngString = call_user_func(
-            function ($inputPhpFile) {
-                try {
-                    ob_start();
-                    include $inputPhpFile;
-                    return ob_get_clean();
-                } catch (Exception $e) {
-                    ob_end_clean();
-                    throw $e;
-                }
-            },
-            $inputPhpFile
-        );
+        $actualPngString = call_user_func(function ($inputPhpFile) {
+            try {
+                ob_start();
+                include $inputPhpFile;
+                return ob_get_clean();
+            } catch (\Exception $e) {
+                ob_end_clean();
+                throw $e;
+            }
+        }, $inputPhpFile);
 
         if (!file_exists($expectedPngFile)) {
             // Actualize a fixture
@@ -76,25 +56,32 @@ class BasicTest extends TestCase
         $this->assertImagesSame(imagecreatefrompng($expectedPngFile), imagecreatefromstring($actualPngString));
     }
 
+    public function provider()
+    {
+        foreach (new \GlobIterator('tests/fixtures/actual/*.php') as $fileInfo) {
+            /** @var $fileInfo \SplFileInfo */
+
+            // Use .php as a label
+            yield $fileInfo->getFilename() => [
+                str_replace(['actual', '.php'], ['expected', '.png'], $fileInfo->getRealPath()),
+                $fileInfo->getRealPath(),
+            ];
+        }
+    }
+
     private function assertImagesSame($expectedPng, $actualPng)
     {
         $this->assertSame(imagesx($expectedPng), imagesx($actualPng));
         $this->assertSame(imagesy($expectedPng), imagesy($actualPng));
 
-        $this->assertSame(
-            imagecolorsforindex($actualPng, imagecolorat($actualPng, 10, 10)),
-            imagecolorsforindex($expectedPng, imagecolorat($expectedPng, 10, 10))
-        );
+        $this->assertSame(imagecolorsforindex($actualPng, imagecolorat($actualPng, 10, 10)), imagecolorsforindex($expectedPng, imagecolorat($expectedPng, 10, 10)));
 
         return;
         // More advanced test which needs fixtures updated
 
         for ($x = 0; $x < imagesx($expectedPng); $x++) {
             for ($y = 0; $y < imagesy($expectedPng); $y++) {
-                $this->assertSame(
-                    imagecolorsforindex($actualPng, imagecolorat($actualPng, $x, $y)),
-                    imagecolorsforindex($expectedPng, imagecolorat($expectedPng, $x, $y))
-                );
+                $this->assertSame(imagecolorsforindex($actualPng, imagecolorat($actualPng, $x, $y)), imagecolorsforindex($expectedPng, imagecolorat($expectedPng, $x, $y)));
             }
         }
     }

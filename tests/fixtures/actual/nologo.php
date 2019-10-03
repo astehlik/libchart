@@ -1,19 +1,14 @@
 <?php
+    $chart = new \Libchart\View\Chart\VerticalBarChart(500, 250);
 
-use Libchart\Model\Point;
-use Libchart\Model\XYDataSet;
-use Libchart\View\Chart\VerticalBarChart;
+    $chart->getPlot()->setLogoFilename(null);
 
-$chart = new VerticalBarChart(500, 250);
+    $dataSet = new \Libchart\Model\XYDataSet();
+    $dataSet->addPoint(new \Libchart\Model\Point("Jan 2005", 273));
+    $dataSet->addPoint(new \Libchart\Model\Point("Feb 2005", 321));
+    $dataSet->addPoint(new \Libchart\Model\Point("March 2005", 442));
+    $dataSet->addPoint(new \Libchart\Model\Point("April 2005", 711));
+    $chart->setDataSet($dataSet);
 
-$chart->getPlot()->setLogoFilename(null);
-
-$dataSet = new XYDataSet();
-$dataSet->addPoint(new Point("Jan 2005", 273));
-$dataSet->addPoint(new Point("Feb 2005", 321));
-$dataSet->addPoint(new Point("March 2005", 442));
-$dataSet->addPoint(new Point("April 2005", 711));
-$chart->setDataSet($dataSet);
-
-$chart->setTitle("Monthly usage for www.example.com");
-$chart->render();
+    $chart->setTitle("Monthly usage for www.example.com");
+    $chart->render();

@@ -40,6 +40,9 @@ jobs:
       script: ./.travis/test_phpunit.sh
     - name: "Unit tests PHP 7.3"
       php: "7.3"
+      script: ./.travis/test_phpunit.sh
+    - name: "Unit tests PHP 7.4"
+      php: "7.4"
       env: UPLOAD_CODE_COVERAGE="yes"
       script: ./.travis/test_phpunit.sh
 
@@ -54,4 +57,7 @@ jobs:
       script: ./.travis/test_lint.sh
     - name: "PHP linting PHP 7.3"
       php: "7.3"
+      script: ./.travis/test_lint.sh
+    - name: "PHP linting PHP 7.4"
+      php: "7.4"
       script: ./.travis/test_lint.sh

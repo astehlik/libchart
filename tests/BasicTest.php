@@ -63,8 +63,8 @@ class BasicTest extends TestCase
 
             // Use .php as a label
             yield $fileInfo->getFilename() => [
-                str_replace(['actual', '.php'], ['expected', '.png'], $fileInfo->getRealPath()),
-                $fileInfo->getRealPath(),
+                str_replace(['actual', '.php'], ['expected', '.png'], $fileInfo->getPathname()),
+                $fileInfo->getPathname(),
             ];
         }
     }

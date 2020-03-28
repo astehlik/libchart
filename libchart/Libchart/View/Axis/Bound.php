@@ -70,7 +70,7 @@
                 $serieList = $dataSet->getSerieList();
                 if (count($serieList) > 0) {
                     $serie = current($serieList);
-                    $dataSetEmpty = !is_array($serie) || count($serie) == 0;
+                    $dataSetEmpty = count($serie) == 0;
                 }
             } else {
                 die("Error: unknown dataset type");

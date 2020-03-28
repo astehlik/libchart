@@ -12,7 +12,7 @@ if [[ "${UPLOAD_CODE_COVERAGE}" == "yes" ]] && [[ "${TRAVIS_PULL_REQUEST}" = "fa
     chmod +x ./cc-test-reporter
     ./cc-test-reporter before-build
     ./vendor/bin/phpunit --coverage-clover clover.xml
-    ./cc-test-reporter after-build --coverage-input-type clover
+    ./cc-test-reporter after-build --coverage-input-type clover || true
 else
     phpenv config-rm xdebug.ini
     ./vendor/bin/phpunit

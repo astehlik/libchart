@@ -73,7 +73,7 @@
                     $dataSetEmpty = count($serie) == 0;
                 }
             } else {
-                die("Error: unknown dataset type");
+                throw new \RuntimeException("Error: unknown dataset type");
             }
             
             // If the dataset is empty, default some bounds

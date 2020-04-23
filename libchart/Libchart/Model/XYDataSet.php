@@ -25,7 +25,7 @@
      * @author Jean-Marc Trémeaux (jm.tremeaux at gmail.com)
      * Created on 10 may 2007
      */
-    class XYDataSet extends \Libchart\Model\DataSet {
+    class XYDataSet extends \Libchart\Model\DataSet implements \Countable {
         private $pointList;
     
         /**
@@ -53,6 +53,10 @@
          */
         public function getPointList() {
             return $this->pointList;
+        }
+
+        public function count() {
+            return count($this->pointList);
         }
     }
 ?>
